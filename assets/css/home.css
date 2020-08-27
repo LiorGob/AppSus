@@ -1,0 +1,12 @@
+.home-page {
+    text-align: center;
+    background-image: url(../img/cover-img.JPG);
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    flex-direction:column ;
+}
+
+.home-page img {
+    object-fit: cover;
+}

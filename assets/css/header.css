@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: #dbdbdb;
+    background-color: #edeae5;
 }
 
 .fas {
@@ -12,18 +12,33 @@
     font-size: 50px;
     width: 50px;
     height: 50px;
-    /* display: inline-flex; */
-    /* align-items: center; */
-    /* justify-content: center; */
-    /* background-color: white; */
-    /* color: black; */
     border-radius: 10px;
     shape-margin: 0em;
     margin: 5px 0;
     cursor: pointer;
 }
 
-
-.fas.fa-home{
-    color: rgb(245, 0, 0);
+.fas:hover{
+    font-size: 60px; 
 }
+
+.fas.fa-home {
+    color: #a6607c
+}
+
+.fas.fa-book-open {
+    color: #026670;
+}
+
+.fas.fa-envelope-open-text {
+    color: #9fedd7;
+}
+
+.fas.fa-lightbulb {
+    color: #fce181;
+}
+
+.fas.fa-arrow-left {
+    color: #4d6d9a
+}
+
