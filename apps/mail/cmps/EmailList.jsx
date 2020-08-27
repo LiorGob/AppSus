@@ -8,7 +8,7 @@ export function EmailList ({emails,removeEmail}) {
             {emails.map(email => 
                 <li className = "email-item" key={email.id}>
                     <EmailPreview email={email}/> 
-                    <button onClick ={() => removeEmail(email.id)}>Delete</button>
+                   
   
                 </li> 
                 

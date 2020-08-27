@@ -1,5 +1,8 @@
-'use strict'
 
+export const eventBusService = {
+    on,
+    emit
+}
 function on(eventName, listener) {
     const callListener = ({ detail }) => {
         listener(detail)
@@ -13,10 +16,6 @@ function emit(eventName, data) {
     window.dispatchEvent(new CustomEvent(eventName, { detail: data }));
 }
 
-
-export default {
-    on, emit
-}
 
 
 
