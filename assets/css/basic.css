@@ -20,6 +20,13 @@ li {
     list-style-type: none;
 }
 
+@font-face{
+    font-family: Molengo;
+    src: url(../font/Molengo-Regular.ttf);
+
+}
+
+
 /* .container{
     width: 1000px;
 }

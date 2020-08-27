@@ -5,9 +5,9 @@ export function NoteList({ notes, onRemoveNote, onPinnedNote }) {
         <ul className="note-grid">
             {notes.map(note =>
                 <li className="note" key={note.id} style={{ backgroundColor: note.style.backgroundColor }}>
+                    <div onClick={() => onPinnedNote(note)}>{note.isPinned ?  <i className="fas fa-thumbtack"></i>:<i className="fas fa-unlink"></i> }</div>
                     <DynamicNote note={note} />
-                    <button onClick={() => onRemoveNote(note.id)}>X</button>
-                    <button onClick={() => onPinnedNote(note)}>{note.isPinned ? 'unpin' : 'pin'}</button>
+                    <div onClick={() => onRemoveNote(note.id)}><i className="far fa-trash-alt"></i></div>
                 </li>)}
         </ul>
 

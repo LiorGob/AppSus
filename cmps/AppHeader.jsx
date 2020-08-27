@@ -6,7 +6,7 @@ function _AppHeader(props) {
     }
     return (
         <header className="main-header">
-            <div className="logo"></div>
+            <div className="logo">AppSus</div>
             <div onClick={goBack}><i className="fas fa-arrow-left"></i></div>
             <NavLink  className='home-nav' to="/"><i className="fas fa-home"></i></NavLink>
             <NavLink><i className="fas fa-book-open"></i></NavLink>

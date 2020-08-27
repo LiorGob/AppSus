@@ -20,7 +20,7 @@ var notes = [
             txt: 'sprint 3 is on'
         },
         style: {
-            backgroundColor: getRandomColor()
+            backgroundColor: '#c44751'
         }
     },
 
@@ -32,7 +32,7 @@ var notes = [
             txt: 'sign on a contract for the apartment'
         },
         style: {
-            backgroundColor: getRandomColor()
+            backgroundColor: '#6d70a7'
         }
     },
     {
@@ -43,7 +43,7 @@ var notes = [
             txt: 'beatiful-view'
         },
         style: {
-            backgroundColor: getRandomColor()
+            backgroundColor: '#ee9460'
         }
     },
     {
@@ -54,7 +54,7 @@ var notes = [
             txt: 'kiss'
         },
         style: {
-            backgroundColor: getRandomColor()
+            backgroundColor: '#66282f'
         }
     }
     // {

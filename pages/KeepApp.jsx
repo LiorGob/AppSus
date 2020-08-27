@@ -64,7 +64,7 @@ export class KeepApp extends React.Component {
     dynamicNote = (inputType) => {
         switch (inputType) {
             case 'txt':
-                return <input onKeyUp={this.onkeyup} type="text" value={this.state.info} onChange={this.changeInput} placeholder="enter a new note" name="txt" />
+                return <input className="add-note" onKeyUp={this.onkeyup} type="text" value={this.state.info} onChange={this.changeInput} placeholder="What's on your mind.." name="txt" />
             default:
                 return <h1>Something went wrong...</h1>
         }
@@ -85,7 +85,10 @@ export class KeepApp extends React.Component {
             <section className="keep-app-masonry">
                 <h1>KeepApp</h1>
                 <div>{this.dynamicNote(this.state.inputType)}</div>
-                <button onClick={this.onAddNote}>Add</button>
+                <div className="adding-note">
+                <div><i className="fas fa-font"></i></div>
+                <div onClick={this.onAddNote}><i className="fas fa-plus"></i></div>
+                </div>
                 <NoteList notes={notes.filter(note => note.isPinned)} onRemoveNote={this.onRemoveNote} onPinnedNote={this.onPinnedNote} />
                 <NoteList notes={notes.filter(note => !note.isPinned)} onRemoveNote={this.onRemoveNote} onPinnedNote={this.onPinnedNote} />
             </section>
