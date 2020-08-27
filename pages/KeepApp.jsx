@@ -41,8 +41,9 @@ export class KeepApp extends React.Component {
         this.loadNotes();
     }
 
-    onPinnedNote = () => {
-        keepService.setPinNote(this.props.note);
+    onPinnedNote = (note) => {
+        keepService.setPinNote(note)
+        this.loadNotes()
     }
 
     changeInput = (ev) => {
@@ -85,12 +86,10 @@ export class KeepApp extends React.Component {
                 <h1>KeepApp</h1>
                 <div>{this.dynamicNote(this.state.inputType)}</div>
                 <button onClick={this.onAddNote}>Add</button>
-                <NoteList notes={notes} onRemoveNote={this.onRemoveNote} onPinnedNote={this.onPinnedNote}/>
-             
+                <NoteList notes={notes} onRemoveNote={this.onRemoveNote} onPinnedNote={this.onPinnedNote} />
+
             </section>
         )
     }
 }
 
-
-// openModal={this.onOpenModal}

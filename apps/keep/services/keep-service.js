@@ -1,7 +1,6 @@
 import { storageService } from '../../../services/storage-service.js';
 import { eventBus } from '../../../services/event-bus-service.js'
 
-
 export const keepService = {
     query,
     addNote,
@@ -35,7 +34,55 @@ var notes = [
         style: {
             backgroundColor: getRandomColor()
         }
+    },
+    {
+        id: makeId(),
+        type: 'noteImg',
+        info: {
+            url: '../apps/keep/assets/img/view-img.jpg',
+            txt: 'beatiful-view'
+        },
+        style: {
+            backgroundColor: getRandomColor()
+        }
+    },
+
+    {
+        id: makeId(),
+        type: 'noteImg',
+        info: {
+            url: '../apps/keep/assets/img/snow-img.gif',
+            txt: 'another-view'
+        },
+        style: {
+            backgroundColor: getRandomColor()
+        }
+    },
+    {
+        id: makeId(),
+        type: 'noteImg',
+        info: {
+            url: '../apps/keep/assets/img/kiss-img.gif',
+            txt: 'kiss'
+        },
+        style: {
+            backgroundColor: getRandomColor()
+        }
     }
+    // {
+    //     id: makeId(),
+    //     type: "noteTodos",
+    //     info: {
+    //         label: "How was it:",
+    //         todos: [
+    //             { txt: "Do that", doneAt: new Date().toLocaleString() }
+    //             // { txt: "Do this", doneAt: new Date().toLocaleString() }
+    //         ]
+    //     },
+    //     style: {
+    //         backgroundColor: getRandomColor()
+    //     }
+    // }
 
 ]
 
@@ -45,19 +92,31 @@ function query() {
 }
 
 
-class TextNote {
-    constructor(type, txt) {
-        this.id = makeId();
-        this.type = type;
-        this.isPinned = false;
-        this.info = { txt: txt };
-        this.style = { backgroundColor: getRandomColor() }
+function createTxtNote(type, txt) {
+    return {
+        id: makeId(),
+        type: type,
+        isPinned: false,
+        info: { txt: txt },
+        style: { backgroundColor: getRandomColor() }
     }
 }
 
+function createImgNote(type, info) {
+    return {
+        id: makeId(),
+        type: type,
+        isPinned: false,
+        info: { url: info, txt: txt },
+        style: { backgroundColor: getRandomColor() }
+    }
+}
+
+
+
+// switch case with note depand on the info and type
 function addNote(type, info) {
-    let newNote = {};
-    newNote = new TextNote(type, info);
+    let newNote = createTxtNote(type, info);
     notes = [newNote, ...notes];
     storageService.saveToStorage('notes', notes)
     return Promise.resolve(notes)
@@ -79,12 +138,13 @@ function removeNote(noteId) {
 
 
 function setPinNote(note) {
-    let currNote = JSON.parse(JSON.stringify(note))
-    currNote.isPinned = !currNote.isPinned;
-    notes = notes.map(note => currNote.id === note.id ? currNote : note);
-    storageService.storageService('notes', notes);
-    // eventBus.emit('noteChange')
-
+    note.isPinned = !note.isPinned;
+    if (note.isPinned === true) {
+        notes.sort(function (x, y) {
+            return (x === y) ? 0 : x ? -1 : 1
+        })
+    }
+    storageService.saveToStorage('notes', notes);
 }
 
 function getNoteById(noteId) {

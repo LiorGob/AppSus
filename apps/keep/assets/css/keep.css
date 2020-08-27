@@ -23,3 +23,8 @@
 .keep-app-masonry button{
     align-self: center;
 } 
+
+.note img{
+    width: 100%;
+    height: 100%;
+}

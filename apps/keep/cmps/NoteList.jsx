@@ -7,9 +7,7 @@ export function NoteList({ notes, onRemoveNote, onPinnedNote }) {
                 <li className="note" key={note.id} style={{ backgroundColor: note.style.backgroundColor }}>
                     <DynamicNote note={note} />
                     <button onClick={() => onRemoveNote(note.id)}>X</button>
-                    <button onClick={() => onPinnedNote(note)}>pin
-                    {notes.some(note=>note.isPinned)} 
-                    </button>
+                    <button onClick={() => onPinnedNote(note)}>pin</button>
                 </li>)}
         </ul>
 
