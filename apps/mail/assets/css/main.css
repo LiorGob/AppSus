@@ -1,9 +1,9 @@
-@font-face{
+@font-face {
     font-family: Molengo;
-    src: url(/AppSus/assets/font/Molengo-Regular.ttf);
-
+    src: url(/AppSus/assets/font/Molengo-Regular.ttf)
 }
-body{
+
+body {
     font-family: Molengo;
 }
 
@@ -13,33 +13,49 @@ a {
     color: black;
 }
 
-
 li {
     list-style-type: none;
 }
-button{
+
+button {
     outline: none;
 }
-.email-filter{
+
+.email-filter {
     display: flex;
 }
 
-.email-filter input{
+.email-filter input {
     height: 40px;
     width: 300px;
-border-radius: 7px;
-border: 0.8px;
-border-bottom-color: lightslategray;
+    border-radius: 7px;
+    border: 0.8px;
+    border-bottom-color: lightslategray;
+}
 
-
+.emails-list {
+    margin-top: -1px;
+    padding: 0;
+    margin-left: 170px;
+    margin-right: 100px;
+    border-radius: 10px;
+    height: 80vh;
+    overflow-y: scroll;
 }
 
 .email-preview {
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
+    /* padding-top: 10px; */
+    border: 1px solid rgba(112, 111, 111, 0.411);
+    transition: all ease .4s;
 }
-
-
+.email-preview:hover {
+    
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
 
 .form-container {
     border-top-left-radius: 10px;
@@ -76,7 +92,6 @@ border-bottom-color: lightslategray;
     text-align: left;
     width: calc(100% - 20px);
     height: 30px;
-  
     color: rgb(37, 36, 36);
 }
 
@@ -105,15 +120,14 @@ border-bottom-color: lightslategray;
     width: 90px;
     height: 35px;
     font-weight: 700;
-    background:#9FEDD7;
+    background: #9FEDD7;
     color: rgb(37, 36, 36);
     cursor: pointer;
     margin-bottom: 10px;
     margin-left: 20px;
     border-radius: 7px;
-    border:none;
+    border: none;
     transition: all ease 0.4s;
- 
 }
 
 .submit-compose:hover {
