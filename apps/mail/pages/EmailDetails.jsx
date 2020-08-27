@@ -29,10 +29,10 @@ this.loadEmail()
       return(
           <section className = "email-details">
              
-                  <h2>{email.from}</h2>
                   <h2>{email.subject}</h2>
-                  <h3>{email.body}</h3>
-                  
+                  <h3>from: {email.from}</h3>
+                  <p>{email.body}</p>
+                  <button className="back-btn" onClick={() => this.props.history.push('/email')}>Back</button>
           </section>
 
       )

@@ -29,7 +29,7 @@ export class EmailApp extends React.Component {
     }
     removeEmail = (emailId) => {
         emailService.remove(emailId)
-        this.loadEmails();
+       this.loadEmails();
 
     }
 
@@ -66,7 +66,6 @@ export class EmailApp extends React.Component {
             <section className="email-app">
                 <h1 className="my-email">My Emails</h1>
                 <EmailFilter location={ this.props.location } onFilter={ this.setFilter } />
-                {/* {!selectedEmail && <EmailFilter onFilter={this.setFilter} />} */}
                 <EmailList emails={emails} removeEmail={this.removeEmail} />
                 {selectedEmail && <EmailDetails email={selectedEmail} />}
                

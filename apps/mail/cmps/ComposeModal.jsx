@@ -59,11 +59,11 @@ export class ComposeModal extends React.Component {
 
     render() {
         if (!this.state.display) return null;
-        return <form className="form-cntainer">
+        return <form className="form-container">
             <div className="form-header">New Massage <span className="close-btn-compose" onClick={this.closeModal}></span></div>
-            <input className='review-input' type="text" placeholder="Recipients" name="from" onChange={this.inputChange}></input>
+            <input className='review-input' type="text" placeholder="To" name="from" onChange={this.inputChange}></input>
             <input type="text" placeholder="Subject" name="subject" onChange={this.inputChange}></input>
-            <textarea className="email-input-text" type="text" name="body"
+            <textarea className="email-input-text" type="text" name="body" rows="20" cols="70"
                 onChange={this.inputChange}></textarea>
             <button className="submit-compose" onClick={this.onSendEmail}>Send</button>
         </form>
