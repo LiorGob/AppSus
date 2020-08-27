@@ -3,7 +3,8 @@ export const emailService = {
     query,
     getById,
     convertToDate,
-    remove
+    remove,
+    makeId
 }
 
 var emails = [

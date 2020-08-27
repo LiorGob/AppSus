@@ -2,6 +2,7 @@
 a{
     text-decoration: none;
     list-style-type: none;
+    color:black;
 }
 
  li{
@@ -9,11 +10,25 @@ a{
  }
  
 
- .emails-list {
-    display: grid;
-    grid-gap: 5px;
-    grid-template-rows: repeat(auto-fit, minmax(auto-fit, 1fr));
-    /* grid-auto-flow: dense; */
-  
+
+.email-preview{
+    display: flex;
+
+    justify-content: space-between;
 }
+
+.edit-mail{
+ position:absolute;
+    display:none;
+    background-color: #fff;
+    height: 100%;
+    width: 40%;
+}
+
+.mail-preview:hover .edit-mail{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    right: 0;
+    }
 
