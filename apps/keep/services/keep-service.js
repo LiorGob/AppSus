@@ -46,18 +46,6 @@ var notes = [
             backgroundColor: getRandomColor()
         }
     },
-
-    {
-        id: makeId(),
-        type: 'noteImg',
-        info: {
-            url: '../apps/keep/assets/img/snow-img.gif',
-            txt: 'another-view'
-        },
-        style: {
-            backgroundColor: getRandomColor()
-        }
-    },
     {
         id: makeId(),
         type: 'noteImg',
@@ -170,3 +158,9 @@ function getRandomColor() {
     }
     return color;
 }
+
+
+
+// toggleShowTxt =()=>{
+//     this.setState({isLongTxtShown: !this.state.isLongTxtShown})
+// }

@@ -8,4 +8,6 @@ export function NoteTodos({ note }) {
 
 }
 
-{/* <div>{note.info.todos.map(todo, idx => { return <li key={idx}>{note.info.todos[idx].txt}</li> })}</div> */}
+{/* <div>{note.info.todos.map(todo,<li key={todo.id}>{note.info.todos[idx].txt}</li> })}</div> */}
+
+// idx => { return 
