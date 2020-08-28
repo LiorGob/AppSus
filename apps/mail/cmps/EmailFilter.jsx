@@ -1,7 +1,7 @@
 export function EmailFilter(props){
     return <section className="email-filter">
       
-        <input type="text" placeholder="Filter by name" onChange={(ev)=>{
+        <input type="text" placeholder="Search email" onChange={(ev)=>{
             props.onFilter(ev.target.value)
 
         }}/>
@@ -9,5 +9,6 @@ export function EmailFilter(props){
 
     </section>
 }
+
 
 

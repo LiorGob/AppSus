@@ -21,40 +21,53 @@ button {
     outline: none;
 }
 
-.email-filter {
-    display: flex;
+.my-email{
+color: #FCE181;
+font-weight: 700;
+font-size: 40px;
 }
 
+ .email-app{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
 .email-filter input {
+    font-size: 20px;
+    font-family: Molengo;
     height: 40px;
     width: 300px;
     border-radius: 7px;
     border: 0.8px;
     border-bottom-color: lightslategray;
+    
 }
 
 .emails-list {
-    margin-top: -1px;
-    padding: 0;
-    margin-left: 170px;
-    margin-right: 100px;
+    margin-top: 20px;
+  width: 82%;
+  
     border-radius: 10px;
     height: 80vh;
     overflow-y: scroll;
 }
 
+
 .email-preview {
     display: flex;
     justify-content: space-between;
     cursor: pointer;
-    /* padding-top: 10px; */
-    border: 1px solid rgba(112, 111, 111, 0.411);
+  color:rgb(37, 36, 36);
+   
+    border: 1px solid white;
     transition: all ease .4s;
 }
 .email-preview:hover {
     
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    border-top: 1px rgba(112, 111, 111);
+    border-bottom: 1px rgba(112, 111, 111);
 }
 
 .form-container {
@@ -143,3 +156,89 @@ textarea .email-input-txt {
     border: none;
     text-align: center;
 }
+
+.side-bar{
+    left: 0; 
+    height: 100vh;
+    position: fixed;
+    width: 170px;
+    background: rgba(255, 255, 255, 0.1);
+} 
+
+.side-bar {
+    background: rgba(0, 0, 0, 0.178);
+}
+
+
+.compose-button {
+    margin-top: 10px;
+    text-align: center;
+    /* display: flex; */
+    /* justify-content: space-evenly; */
+    /* justify-items: center; */
+    margin-left: 10px;
+    width: 140px;
+    height: 50px;
+    border-radius: 25px;
+    outline: none;
+    cursor: pointer;
+    background: white;
+    border: 1px solid white;
+    font-size: 15px;
+    transition: all ease .4s;
+    box-shadow: rgb(196, 194, 194) .1px .4px .4px .4px;
+}
+
+.fas.fa-plus{
+height: 20px;
+width: 20px;
+color: #0a0500;
+}
+
+.compose-button:hover {
+    background: rgb(250, 253, 251);
+    box-shadow: rgb(196, 194, 194) .1px 1px .4px 1px;
+}
+
+/* Hamburger */
+
+
+.nav-hamburger {
+    display: none;
+}
+
+.nav-hamburger span {
+    display: block;
+    height: 2px;
+    background: #FFF;
+    width: 20px;
+    transition: .3s all;
+    transform: rotate(360deg);
+}
+
+.nav-hamburger:hover {
+    border-color: #0a0500;
+}
+
+.nav-hamburger:hover span {
+    background: #0c0600;
+}
+
+.menu-open .nav-hamburger span:first-child {
+    transform: rotate(45deg);
+    position: absolute;
+}
+
+.menu-open .nav-hamburger span:nth-child(2) {
+    display: none;
+}
+
+.menu-open .nav-hamburger span:nth-child(3) {
+    transform: rotate(-45deg);
+    position: absolute;
+}
+
+.open {
+    transform: translate(-110%);
+}
+
