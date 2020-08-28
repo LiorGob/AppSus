@@ -14,7 +14,7 @@ export const keepService = {
 var notes = [
     {
         id: makeId(),
-        type: 'noteText',
+        type: 'NoteTxt',
         isPinned: false,
         info: {
             txt: 'sprint 3 is on'
@@ -26,7 +26,7 @@ var notes = [
 
     {
         id: makeId(),
-        type: 'noteText',
+        type: 'NoteTxt',
         isPinned: false,
         info: {
             txt: 'sign on a contract for the apartment'
@@ -37,10 +37,10 @@ var notes = [
     },
     {
         id: makeId(),
-        type: 'noteImg',
+        type: 'NoteImg',
         info: {
-            url: '../apps/keep/assets/img/view-img.jpg',
-            txt: 'beatiful-view'
+            url: 'apps/keep/assets/img/view-img.jpg',
+            title: 'beatiful-view'
         },
         style: {
             backgroundColor: '#ee9460'
@@ -48,29 +48,29 @@ var notes = [
     },
     {
         id: makeId(),
-        type: 'noteImg',
+        type: 'NoteImg',
         info: {
-            url: '../apps/keep/assets/img/kiss-img.gif',
-            txt: 'kiss'
+            url: 'apps/keep/assets/img/kiss-img.gif',
+            title: 'kiss'
         },
         style: {
             backgroundColor: '#66282f'
         }
+    },
+    {
+        id: makeId(),
+        type: 'NoteTodos',
+        info: {
+            label: 'How was it:',
+            todos: [
+                { txt: 'Do that', doneAt: new Date().toLocaleString() },
+                { txt: 'Do this', doneAt: new Date().toLocaleString() }
+            ]
+        },
+        style: {
+            backgroundColor: '#9fedd7'
+        }
     }
-    // {
-    //     id: makeId(),
-    //     type: "noteTodos",
-    //     info: {
-    //         label: "How was it:",
-    //         todos: [
-    //             { txt: "Do that", doneAt: new Date().toLocaleString() }
-    //             // { txt: "Do this", doneAt: new Date().toLocaleString() }
-    //         ]
-    //     },
-    //     style: {
-    //         backgroundColor: getRandomColor()
-    //     }
-    // }
 
 ]
 
@@ -95,11 +95,10 @@ function createImgNote(type, info) {
         id: makeId(),
         type: type,
         isPinned: false,
-        info: { url: info, txt: txt },
+        info: { url: info, title: txt },
         style: { backgroundColor: getRandomColor() }
     }
 }
-
 
 
 // switch case with note depand on the info and type

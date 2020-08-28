@@ -19,13 +19,22 @@
     grid-auto-flow: dense;
 }
 
+.note-grid button {
+    background: none;
+    border: none;
+}
+
 .note {
     padding: 10px 10px 5px 10px;
     display: flex;
     flex-direction: column;
     border-radius: 12px;
-    /* height: 100%;
-    width: 100%; */
+}
+
+.note-filter input {
+    border-radius: 7px;
+    text-align: center;
+    outline: none;
 }
 
 .keep-app-masonry button {
@@ -36,7 +45,6 @@
     width: 100%;
     height: 100%;
 }
-
 
 .fas.fa-thumbtack {
     width: 20px;
@@ -49,38 +57,59 @@
 .fas.fa-unlink {
     width: 20px;
     height: 20px;
-    font-size:  1.2rem;
+    font-size: 1.2rem;
     color: black;
 }
 
 .far.fa-trash-alt {
     width: 20px;
     height: 20px;
-    font-size:  1.2rem;
+    font-size: 1.2rem;
     color: black;
     cursor: pointer;
 }
 
-.fas.fa-plus{
+.fas.fa-plus {
     width: 20px;
     height: 20px;
-    font-size:  1.2rem;
+    font-size: 1.2rem;
     color: black;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
-.add-note{
+.add-note {
     border-radius: 7px;
     text-align: center;
     outline: none;
 }
-.adding-note{
+
+.adding-note {
     display: flex;
     justify-content: center;
+    justify-content: space-between;
+    justify-content: space-around;
 }
 
-.fas.fa-font{
+.fas.fa-font {
     width: 20px;
     height: 20px;
-    font-size:  1.2rem;  
+    font-size: 1.2rem;
+}
+
+.fas.fa-mountain {
+    width: 20px;
+    height: 20px;
+    font-size: 1.2rem;
+}
+
+.fab.fa-youtube {
+    width: 20px;
+    height: 20px;
+    font-size: 1.2rem;
+}
+
+.fas.fa-list {
+    width: 20px;
+    height: 20px;
+    font-size: 1.2rem;
 }

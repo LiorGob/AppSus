@@ -1,13 +1,13 @@
 export function NoteTodos({ note }) {
     return (
         <div className='noteTodos'>
-            <div>{note.info.todos[0].txt}</div>
-        </div>
-
+            <h4>{note.info.label}</h4>
+            <ul>
+                {note.info.todos.map((todo,idx) =>
+                    <li key={idx}>
+                        <h5>{todo.txt} ,{todo.doneAt}</h5>
+                    </li>)}
+            </ul>
+        </div >
     )
-
 }
-
-{/* <div>{note.info.todos.map(todo,<li key={todo.id}>{note.info.todos[idx].txt}</li> })}</div> */}
-
-// idx => { return 
