@@ -12,7 +12,7 @@ export class EmailFilter extends React.Component {
     render() {
         return <section className="email-filter">
             <input value={ this.state.filterBy } type="text" placeholder="Search email"
-                onChange={ this.handleChange } /><i className="email fas fa-search"></i>
+                onChange={ this.handleChange } />
         </section >
     }
 }

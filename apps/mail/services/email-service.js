@@ -31,7 +31,7 @@ var emails = [
     {
         id:'tyk56',
         from: 'Zoom',
-        subject: 'zoom meeting invitation',
+        subject: 'zoom meeting',
         body: 'lior gobari has joined your Personal Meeting Room',
         isRead: false,
         isStarred: false,
@@ -41,7 +41,7 @@ var emails = [
     {
         id:'egi26',
         from: 'Zoom Service',
-        subject: 'Your meeting attendees are waiting!‏' ,
+        subject: 'attendees are waiting!‏' ,
         body: 'Hi there,Please click this URL to start your Zoom meeting: Shirly Aviv zemach Personal Meeting Room, https://us04web.zoom.us/j/7695871766?pwd=eVJFUXA5QnFreVZOQ2FLT0lDNzU1QT09 as your participant lior gobari is waiting.',
         isRead: false, 
         isStarred: false,
@@ -61,7 +61,7 @@ var emails = [
     {
         id:'jm158',
         from: 'alondai1',
-        subject: 'alondai1 invited you to Meme generator',
+        subject: 'Meme generator',
         body: 'Hola, alondai1 invited you as a teammate on Meme generator in Zeplin',
         isRead: false,
         isStarred: false,
@@ -81,7 +81,7 @@ var emails = [
     {
         id:'imh91',
         from: 'Linkedin',
-        subject: 'ori and Noa want to join your network‏',
+        subject: 'Noa want to join your network‏',
         body: 'Here a summary of your latest invitations to connect.',
         isRead: false,
         isStarred: false,
