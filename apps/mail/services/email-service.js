@@ -1,10 +1,17 @@
 import {eventBusService} from '../services/eventBusService.js'
+import {storageService} from '../../../services/storage-service.js'
 export const emailService = {
     query,
     getById,
     convertToDate,
     remove,
-    makeId
+    makeId,
+    sendEmail,
+    unreadMailCount,
+    save,
+    updateRead,
+    getIdxById
+   
 }
 
 var emails = [
@@ -81,16 +88,18 @@ var emails = [
 
 
 ]
-
+const KEY = 'emails'
 
 function convertToDate(date){
 const dateObject = new Date(date)
-console.log(date);
+
 const humanDateFormat = dateObject.toLocaleString() //2019-12-9 10:30:15
 return humanDateFormat
 }
 
 function query (){
+   const emailsFromStorage = loadFromStorage(KEY)
+   if(emailsFromStorage) emails=emailsFromStorage
     return Promise.resolve(emails)
 }
 
@@ -104,16 +113,88 @@ function makeId(length = 5) {
 }
 
 function getById(emailId){
-    const email = emails.find(email=> email.id===emailId)
-    return Promise.resolve(email)
+ 
+        let email = emails.find(email=> email.id===emailId)
+        return Promise.resolve(email)
+   
+}
+function getIdxById(emailId) {
+  
+    return query()
+        .then(emails => {
+            var idx = emails.findIndex(email => email.id === emailId)
+          
+            return Promise.resolve(idx)
+        })
 }
 
 function remove(emailId){
     emails=emails.filter(email=>email.id !==emailId)
 }
 
+function save(emailToSave){
+  emails.unshift(emailToSave)
+   
+}
+
+// function emailRead(emailRead) {
+//     emails.forEach((email) => {
+//         if (email.id === emailRead.id) {
+//             if (email.isRead) return
+//             email.isRead = !email.isRead
+//         }
+//     })
+// }
+
+function updateRead(mail, isRead = true) {
+    
+    return getIdxById(mail.id)
+        .then((mailIdx) => query()
+            .then(mails => {
+                var currMail = mails[mailIdx]
+                console.log("updateReaden -> isReadenClick", isRead)
+                currMail.isRead = isRead;
+               saveToStorage('emails', mails)
+                return Promise.resolve()
+            }))
+
+}
+
 
 function sendEmail(email){
-    emails.push(email);
-    eventBusService.emit('emailAdded')
+    const emailToAdd ={
+        ...email,
+        id:makeId(),
+        from,
+        subject,
+        body,
+        isRead: false,
+        isStarred: false,
+        sentAt: convertToDate(Date.now())
+
+    }
+    emails = [emailToAdd,...emails]
 }
+window.theEmails = emails
+
+
+
+function unreadMailCount(){
+    let count=emails.filter(function(email){ return !email.isRead}).length;
+    if(!count) return 0;
+    return count;
+}
+
+function _saveEmailsToStorage() {
+    saveToStorage(KEY, books)
+  }
+/////////////////
+  
+  function saveToStorage(key, val) {
+    localStorage.setItem(key, JSON.stringify(val))
+  }
+  
+  function loadFromStorage(key) {
+    var val = localStorage.getItem(key)
+    return JSON.parse(val)
+  }

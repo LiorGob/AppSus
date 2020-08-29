@@ -9,9 +9,9 @@ export class ComposeModal extends React.Component {
         display: false,
         email: {
             from: '',
-            subjuct: '',
+            subject: '',
             body: '',
-            sentAt: Date.now(),
+            sentAt: emailService.convertToDate(Date.now()),
             id: emailService.makeId()
         }
     }
@@ -20,8 +20,8 @@ export class ComposeModal extends React.Component {
 
     componentDidMount() {
         this.unsubscribe = eventBusService.on('composeModal', (data) => {
-            console.log(data);
             this.setState({ display: true })
+            
             
         })
     }
@@ -32,28 +32,22 @@ export class ComposeModal extends React.Component {
         this.setState({ display: false })
     }
 
+
     inputChange = (ev) => {
         const name = ev.target.name;
         const value = ev.target.value;
-        this.setState(prevState => {
-            return { email: { ...prevState.email, [name]: value } }
-        })
-
+        this.setState({ email: { ...this.state.email, [name]: value } })
     }
 
-    onSendEmail = () => {
+    addEmail=(ev)=>{
         ev.preventDefault();
-        this.onSetId();
-        emailService.sendEmail(this.state.email)
+        // console.log('Adding email');
+        // console.log(this.state.email)
+        emailService.save(this.state.email)
+        eventBusService.emit('notify',{msg:'Email sent', type:'fail'})
         this.closeModal();
-    }
-
-    onSetId = () => {
-        let name = 'id';
-        let time = 'sentAt';
-        this.setState(prevState => {
-            return { email: { ...prevState.email, [name]: emailService.makeId(5), [time]: convertToDate(Date.now()) } }
-        })
+        this.props.loadEmails()
+        // this.props.history.push('/email')
     }
 
 
@@ -65,7 +59,7 @@ export class ComposeModal extends React.Component {
             <input type="text" placeholder="Subject" name="subject" onChange={this.inputChange}></input>
             <textarea className="email-input-text" type="text" name="body" rows="20" cols="70"
                 onChange={this.inputChange}></textarea>
-            <button className="submit-compose" onClick={this.onSendEmail}>Send</button>
+            <button className="submit-compose" onClick={this.addEmail}>Send</button>
         </form>
     }
 
