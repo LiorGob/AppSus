@@ -34,7 +34,7 @@ img {
     object-fit: cover;
 }
 
-input {
+.book-filter input, .input-add input {
     border-radius: 7px;
     text-align: center;
     outline: none;

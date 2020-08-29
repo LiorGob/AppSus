@@ -23,7 +23,7 @@ button {
 
 .my-email {
     color: #FCE181;
-    font-weight: 700;
+    /* font-weight: 700; */
     font-size: 40px;
 }
 
@@ -42,8 +42,9 @@ button {
     border: 0.8px;
     border-bottom-color: lightslategray;
 }
-.email.fas.fa-search{
-    color:#8f8f8e;
+
+.email.fas.fa-search {
+    color: #8f8f8e;
     font-size: 2rem;
     height: 20px;
     width: 20px;
@@ -79,10 +80,12 @@ button {
 .email-preview {
     display: flex;
     justify-content: space-between;
+    /* display: grid;
+    grid-template-columns: repeat(4, 1fr); */
     cursor: pointer;
     color: rgb(37, 36, 36);
     border: 1px solid white;
-    transition: all ease .4s;
+    transition: all ease .3s;
 }
 
 .email-preview:hover {
@@ -112,7 +115,7 @@ button {
     width: 10px; */
 }
 
-.email-trash.far.fa-trash-alt{
+.email-trash.far.fa-trash-alt {
     color: #8f8f8e;
     font-size: 1.5rem;
   
@@ -133,6 +136,7 @@ button {
     width: 570px;
     height: 520px;
     background: white;
+    box-shadow: 0px 1px 5px 0 rgba(60, 64, 67, 0.302), 0 1px 3px 1px rgba(60, 64, 67, 0.149);
 }
 
 .form-container input {
@@ -160,7 +164,7 @@ button {
 
 .form-container .email-input-txt {
     padding: 5px;
-    text-align: center;
+    /* text-align: center; */
     height: 100%;
     outline: none;
     border: none;
@@ -203,8 +207,9 @@ button {
 }
 
 textarea .email-input-txt {
-    border: none;
-    text-align: center;
+    border: 0.5px solid white;
+    outline: white;
+    /* text-align: center; */
 }
 
 .trash-btn-email .far.fa-trash-alt {
@@ -218,7 +223,7 @@ textarea .email-input-txt {
 .email-item button {
     background: none;
     border: none;
-    margin:0px;
+    margin: 0px;
 }
 
 /* Asidebar */
@@ -242,9 +247,9 @@ textarea .email-input-txt {
     /* width: 170px; */
     transition: all ease .4s;
 }
-.EmailSideBar-icons{
-   padding-inline-start: 5px;
 
+.EmailSideBar-icons {
+    padding-inline-start: 5px;
 }
 
 .compose-button {
@@ -262,16 +267,14 @@ textarea .email-input-txt {
     box-shadow: rgb(196, 194, 194) .1px .4px .4px .4px;
 }
 
-
 .email.fas.fa-plus {
     font-size: 1.5rem;
     height: 20px;
     width: 20px;
-    color:  #8f8f8e;
-    
+    color: #8f8f8e;
 }
 
-.email.fas.fa-plus:hover{
+.email.fas.fa-plus:hover {
     color: #0a0500;
 }
 
@@ -279,13 +282,13 @@ textarea .email-input-txt {
     font-size: 1.5rem;
     height: 30px;
     width: 30px;
-    color:  #8f8f8e;
+    color: #8f8f8e;
     padding-top: 20px;
-    margin-top:0px;
+    margin-top: 0px;
     margin-bottom: 0px;
-
 }
-.inbox.fas.fa-envelope-open-text:hover{
+
+.inbox.fas.fa-envelope-open-text:hover {
     color: #0a0500;
 }
 
@@ -293,10 +296,12 @@ textarea .email-input-txt {
     font-size: 1.5rem;
     height: 30px;
     width: 30px;
-    color:  #8f8f8e;;
+    color: #8f8f8e;
+    ;
     padding-top: 20px;
 }
-.sent.far.fa-paper-plane:hover{
+
+.sent.far.fa-paper-plane:hover {
     color: #0a0500;
 }
 
@@ -307,22 +312,23 @@ textarea .email-input-txt {
     color: #8f8f8e;
     padding-top: 20px;
 }
-.email-trash-bar.far.fa-trash-alt:hover{
+
+.email-trash-bar.far.fa-trash-alt:hover {
     color: #0a0500;
 }
 
-.replay.fas.fa-reply{
+.replay.fas.fa-reply {
     font-size: 1.5rem;
     height: 30px;
     width: 30px;
     color: #8f8f8e;
     padding-top: 20px;
-    margin:0px;
-    }
-.replay.fas.fa-reply:hover{
-    color: #0a0500;
-    }
+    margin: 0px;
+}
 
+.replay.fas.fa-reply:hover {
+    color: #0a0500;
+}
 
 .inbox {
     padding-bottom: 30px;
@@ -341,7 +347,7 @@ textarea .email-input-txt {
     box-shadow: rgb(196, 194, 194) .1px 1px .4px 1px;
 }
 
-.email-route{
+.email-route {
     padding-top: 10px;
     padding-left: 5px;
 }
