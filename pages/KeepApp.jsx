@@ -37,7 +37,6 @@ export class KeepApp extends React.Component {
         keepService.addNote(this.state.type, this.state.info)
             .then(notes => {
                 this.setState({ notes, info: '' })
-                // storageService.saveToStorage('notes', notes)
             })
 
     }

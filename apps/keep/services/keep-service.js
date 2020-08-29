@@ -202,7 +202,22 @@ function addNote( type, info) {
 }
 
 
-
+// new function to edit:
+// function save(noteToSave){
+//     let foundedNote =  notes.find((note)=>note.id ===noteToSave.id)
+//     if(!foundedNote)
+//     _update(foundedNote)
+//      else
+//          addNote(noteToSave)
+//   }
+  
+//   function update(noteToSave){
+//       let foundedNote = notes.find((note)=>note.id ===noteToSave.id)
+//       if(foundedNote)
+//        foundedNote = noteToSave
+//   }
+  
+  
 
 // function save(noteToSave) {
 //     noteToSave.id ? _update(noteToSave) : addNote(noteToSave)
