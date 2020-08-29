@@ -8,8 +8,10 @@
 }
 
 .logo {
-    font-size: 2rem;
-    color: #deb887;
+    font-size: 3rem;
+    /* font-weight: 700; */
+    color: #fce181;
+    font-family: Molengo;
 }
 
 .fas, .fab {
