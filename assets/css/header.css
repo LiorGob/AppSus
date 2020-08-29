@@ -9,7 +9,7 @@
 
 .logo {
     font-size: 2rem;
-    color: burlywood;
+    color: #deb887;
 }
 
 .fas, .fab {
@@ -45,4 +45,33 @@
 
 .fas.fa-arrow-left {
     color: #4d6d9a
+}
+
+/* media */
+
+@media (max-width: 550px) {
+    /* .main-header>*:not(:last-child) {
+        display: none;
+    } */
+    .fas, .fab {
+        text-align: center;
+        font-size: 30px;
+        width: 30px;
+        height: 30px;
+        border-radius: 7px;
+        shape-margin: 0em;
+        margin: 5px 0;
+        cursor: pointer;
+    }
+
+    .fas:hover {
+        font-size: 33px;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+        color: #deb887;
+    }
+    
+   
 }

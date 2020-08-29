@@ -17,6 +17,7 @@
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     /* grid-template-rows: 300px; */
     grid-auto-flow: dense;
+    padding: 1rem;
 }
 
 .note-grid button {
@@ -90,7 +91,6 @@
     width: 18rem;
     height: 3rem;
     font-size: 100%;
-    padding-bottom: 10px;
 }
 
 /* Adding new note */
@@ -98,52 +98,45 @@
 .adding-note {
     display: flex;
     justify-content: center;
-    /* justify-content: space-between; */
-    justify-content: space-around;
 }
 
-/* .adding-note-btn {
-    width: 20px;
-    height: 20px;
-    font-size: 1.2rem
-} */
 
 .adding-note button {
     border: none;
     background: none;
 }
 
-
-
 .keep.fas.fa-plus, .fas.fa-font, .fas.fa-mountain, .fab.fa-youtube, .fas.fa-list {
     font-size: 2.2rem;
     color: rgb(43, 41, 41);
-    /* color: coral; */
+    padding-top: 10px;
     cursor: pointer;
 }
 
-/* .fas.fa-font {
-    width: 20px;
-    height: 20px;
-    font-size: 1.5rem; 
+/* media */
 
-} */
+@media (max-width: 550px) {
+    .note-grid {
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        /* grid-template-rows: 300px; */
+        grid-auto-flow: dense;
+        padding: 1rem;
+    }
+    .add-note, .note-filter input {
+        border-radius: 7px;
+        text-align: center;
+        outline: none;
+        width: 12rem;
+        height: 2.5rem;
+        font-size: 100%;
+    }
 
-/* .fas.fa-mountain {
-    width: 20px;
-    height: 20px;
-    font-size: 2.5rem;
-} */
-
-/* .fab.fa-youtube {
-    width: 20px;
-    height: 20px;
-    font-size: 2.5rem;
-} */
-
-/* 
-.fas.fa-list {
-    width: 20px;
-    height: 20px;
-    font-size: 2.5rem;
-} */
+    .keep.fas.fa-plus, .fas.fa-font, .fas.fa-mountain, .fab.fa-youtube, .fas.fa-list {
+        font-size: 1.2rem;
+        color: rgb(43, 41, 41);
+        padding-top: 10px;
+        cursor: pointer;
+    }
+}

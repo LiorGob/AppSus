@@ -24,10 +24,9 @@ export class BookAdd extends React.Component {
 
     render() {
         const { books } = this.state;
-        // if (!book) return <div>Loading..</div>
         return (
             <section>
-                <input name="title" placholder="search title" onChange={this.onInputChange} value={this.state.title} />
+                <input name="title" placeholder="Search Book To Add" onChange={this.onInputChange} value={this.state.title} />
                 <ul>
                     {books.map(book => {
                         return <div className="google-book" key={book.id}>

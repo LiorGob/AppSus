@@ -1,5 +1,3 @@
-import { storageService } from './storage-service.js'
-
 
 export const bookService = {
   query,

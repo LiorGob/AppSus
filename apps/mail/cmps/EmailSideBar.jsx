@@ -17,7 +17,7 @@ export class EmailSideBar extends React.Component {
 
     render() {
         return <div className="side-bar">
-            <button onClick={this.onToggleCompose} className={'compose-button'}><i className="fas fa-plus"></i></button>
+            <button onClick={this.onToggleCompose} className={'compose-button'}><i className="email fas fa-plus"></i></button>
             <ComposeModal loadEmails={this.props.loadEmails}/>
             <div className="email-route">
                 <ul>

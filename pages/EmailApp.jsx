@@ -18,7 +18,8 @@ export class EmailApp extends React.Component {
         filterBy: '',
         emails: [],
         selectedEmail: null,
-        isShown: false
+        isShown: false,
+        emailType:''
 
     }
 
@@ -56,6 +57,19 @@ export class EmailApp extends React.Component {
 
     }
 
+    markAStar =(email)=>{
+        emailService.markAStar(email)
+        .then(()=>{this.loadEmails})
+
+    }
+
+    openStarEmail=()=>{
+        emailService.query()
+        .then((emails)=>{
+            this.setState({emailType:'star'})
+        })
+    }
+
 
 
     render() {
@@ -65,7 +79,7 @@ export class EmailApp extends React.Component {
         // const { emails} = this.state
         return (
             <div className="wrap">
-            <EmailSideBar loadEmails={this.loadEmails} openCompose={this.openCompose} onSetFilter={this.onSetFilter}></EmailSideBar>
+            <EmailSideBar loadEmails={this.loadEmails} openCompose={this.openCompose} onSetFilter={this.onSetFilter} openStarEmail={this.openStarEmail}></EmailSideBar>
               <Router> 
             {/* <div className="email-route">
                 <ul>
@@ -93,9 +107,9 @@ export class EmailApp extends React.Component {
             <section className="email-app">
                 <h1 className="my-email">My Emails</h1>
                 <EmailFilter location={ this.props.location } onFilter={ this.setFilter } />
-                <EmailList emails={emails} setRead={this.setRead} removeEmail={this.removeEmail} />
+                <EmailList emails={emails} setRead={this.setRead} removeEmail={this.removeEmail} markAStar={this.markAStar}  />
                 {selectedEmail && <EmailDetails email={selectedEmail} />}
-                {/* {this.state.isShown && <ComposeModal onCloseCompose={this.closeCompose} onSubmitCompose={this.submitCompose} />} */}
+              
             </section>
             </div>
         

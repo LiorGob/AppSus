@@ -1,5 +1,5 @@
 import { bookService } from '../../services/book-service.js'
-import { eventBus } from '../../services/event-bus-service.js'
+// import { eventBus } from '../../services/event-bus-service.js'
 export class ReviewAdd extends React.Component {
 
     state = {
@@ -66,52 +66,3 @@ export class ReviewAdd extends React.Component {
 
 }
 
-// onClick={() => { this.props.onSubmite(event.this.state.review) }}
-// component- review list:
-// import { ReviewPreview } from 'ReviewPreview.jsx'
-
-// export function ReviewList(props) {
-
-//     function removeReview(){
-
-//     }
-
-//     return (<section>
-//         <ul className="review-list">
-//             {
-//                 props.reviews.map((review) =>
-//                     <li key={review.id}>
-//                         <ReviewPreview review={review} />
-//                         <button onClick={() => props.remove(props.bookId,review.id)}>x</button>
-//                     </li>
-//                 )
-//             }
-//         </ul>
-//     </section>
-//     )
-// }
-// review priview component:
-// export function ReviewPreview({ review }) {
-
-//     function ratingStar() {
-//         const stars = '⭐'.repeat(review.rating);
-//         return stars;
-//     }
-
-//     return (
-//         <article className="review-details">
-//             <h5>
-//                 {review.fullName}
-//             </h5>
-//             <label>
-//                 {ratingStar()}
-//             </label>
-//             <h5>
-//                 {review.datepicker}
-//             </h5>
-//             <p>
-//                 {review.txt}
-//             </p>
-//         </article>
-//     )
-// }

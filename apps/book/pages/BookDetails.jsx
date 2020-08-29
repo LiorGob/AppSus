@@ -1,7 +1,6 @@
-const { Link } = ReactRouterDOM
+// const { Link } = ReactRouterDOM
 import { LongTxt } from '../cmps/book-app/LongTxt.jsx'
 import { bookService } from '../services/book-service.js'
-// import { ReviewAdd } from '../cmps/book-app/ReviewAdd.jsx'
 
 export class BookDetails extends React.Component {
     state = { isLongTxtShown: false, book: null }
@@ -40,16 +39,11 @@ export class BookDetails extends React.Component {
         bookService.addReview(bookId, review).then(this.loadBook)
     }
     isOnSale(isOnSale) {
-        if (isOnSale) return <img src="./assets/img/sale.gif" />;
+        if (isOnSale) return <img src="apps/book/assets/img/sale.gif" />;
         else '';
     }
 
 
-    // onSubmit = () => {
-    //     ev.preventDefault();
-    //     const bookWithReview = bookService.addReview(review, this.state.book)
-    //     this.setState({ book: bookWithReview })
-    // }
 
     render() {
         const { book } = this.state;
@@ -57,6 +51,7 @@ export class BookDetails extends React.Component {
         return (
             <div className="book-details">
                 <img src={book.thumbnail} />
+                <div className="book-info">
                 <h2>{book.title}</h2>
                 <h2> {book.pageCount} Pages, {this.setPageCount(book.pageCount)}</h2>
                 <h2>Published On: {book.publishedDate} {this.setPublishedDate(book.publishedDate)}</h2>
@@ -64,8 +59,9 @@ export class BookDetails extends React.Component {
                 <div className="img-gif">{this.isOnSale(book.listPrice.isOnSale)}</div>
                 <LongTxt txt={book.description} />
                 {/* <ReviewAdd onSubmit={this.onSubmit} /> */}
-                <button onClick={() => this.props.history.push('/book')}>Back</button>
+                {/* <button onClick={() => this.props.history.push('/book')}>Back</button> */}
                 {/* <Link to= {`/book/review/${book.id}`}>Add Review</Link> */}
+                </div>
             </div>
         )
     }

@@ -1,5 +1,3 @@
-@import './Header.css';
-@import './Helpers.css';
 /* General */
 
 * {
@@ -16,9 +14,13 @@
     src: url(../font/Lato/Lato-Regular.ttf);
 }
 
+.book-app h1 {
+    color: #4d6d9a;
+    font-size: 2rem;
+}
 
-body {
-    /* background-color: #bddae7; */
+.book-app {
+    text-align: center;
 }
 
 a, li {
@@ -27,24 +29,20 @@ a, li {
     /* color: #494949; */
 }
 
-button {
-    cursor: pointer;
-    background-color: #fff;
-}
 
 img {
     object-fit: cover;
 }
 
-input{
-    /* height: 30px;
-    width: 200px;
-    border-radius: 5px;
-    outline: none; */
-    /* margin-left: 5px;
-    margin-bottom: 10px; */
-
+input {
+    border-radius: 7px;
+    text-align: center;
+    outline: none;
+    width: 12rem;
+    height: 2.5rem;
+    font-size: 100%;
 }
+
 /* Price Book: */
 
 .green {
@@ -67,29 +65,71 @@ input{
     justify-content: center;
 }
 
-.book-preview {
-    /* background-color: #f1dfdfd8; */
+
+.book-details{
+    text-align: center;
+    text-align: center;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    padding: 1rem;
 }
 
+.book-info{
+    flex-direction: column;
+    color: rgb(39, 39, 39); 
+}
+/* .book-preview { */
+    /* background-color: #f1dfdfd8; */
+/* } */
+
 /* about */
-.about{
+
+.about {
     display: flex;
     flex-direction: column;
     text-align: center;
 }
-.about img{
+
+.about img {
     object-fit: cover;
 }
 
-
-.home{
-   background-image: url(../img/book-gif.gif); 
-   height: 100vh;
-   background-size: cover;
-   /* display: flex; */
-   /* object-fit: cover; */
+.home {
+    background-image: url(../img/book-gif.gif);
+    height: 100vh;
+    background-size: cover;
+    /* display: flex; */
+    /* object-fit: cover; */
 }
 
-.img-gif{
-  background-repeat: no-repeat;
+.img-gif {
+    background-repeat: no-repeat;
+}
+
+@media (max-width: 550px) {
+    .book-list {
+        display: grid;
+        grid-gap: 15px;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-auto-flow: dense;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        padding-left: 0;
+    }
+
+    .book-details{
+        text-align: center;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+    }
+    
+    .book-info{
+        flex-direction: column;
+        color: #272727; 
+    }
 }

@@ -6,7 +6,7 @@ const KEY_NOTES = 'notes'
 export const keepService = {
     query,
     addNote,
-    getNotes,
+    // getNotes,
     getNoteById,
     removeNote,
     setPinNote,
@@ -45,7 +45,7 @@ var notes = [
         isPinned: false,
         info: {
             url: 'apps/keep/assets/img/view-img.jpg',
-            title: 'beatiful-view'
+            title: 'beatiful view'
         },
         style: {
             backgroundColor: '#ee9460'
@@ -65,19 +65,59 @@ var notes = [
     },
     {
         id: makeId(),
+        type: 'NoteImg',
+        isPinned: false,
+        info: {
+            url: 'apps/keep/assets/img/cat.gif',
+            title: 'smart cat'
+        },
+        style: {
+            backgroundColor: '#fce181'
+        }
+    },
+    {
+        id: makeId(),
         type: 'NoteTodos',
         isPinned: false,
         info: {
             label: 'How was it:',
             todos: [
-                { txt: 'Do that', doneAt: new Date().toLocaleString() },
-                { txt: 'Do this', doneAt: new Date().toLocaleString() }
+                { txt: 'buy Rosie Project book', doneAt: new Date().toLocaleString() },
+                { txt: 'pay for the test of the car', doneAt: new Date().toLocaleString() }
             ]
         },
         style: {
             backgroundColor: '#9fedd7'
         }
+    },
+    {
+        id: makeId(),
+        type: 'NoteTodos',
+        isPinned: false,
+        info: {
+            label: 'How was it:',
+            todos: [
+                { txt: 'open linkedin', doneAt: new Date().toLocaleString() },
+                { txt: 'sent email to my sister', doneAt: new Date().toLocaleString() }
+            ]
+        },
+        style: {
+            backgroundColor: '#95c781'
+        }
+    },
+    {
+        id: makeId(),
+        type: 'NoteVideo',
+        isPinned: false,
+        info: {
+            url: 'https://www.youtube.com/embed/watch?v=WyDloWawVWo',
+            title: 'nice music'
+        },
+        style: {
+            backgroundColor: '#deb887'
+        }
     }
+  
 
 ]
 
@@ -117,7 +157,7 @@ function createTodoNote(type, info) {
         id: makeId(),
         type: type,
         isPinned: false,
-        info: { label: 'open linkedin', todos: [{ txt: info, doneAt: new Date().toLocaleString() }, { txt: info, doneAt: new Date().toLocaleString() }] },
+        info: { label: '', todos: [{ txt: info, doneAt: new Date().toLocaleString() }, { txt: info, doneAt: new Date().toLocaleString() }] },
         style: { backgroundColor: getRandomColor() }
     }
 
@@ -183,14 +223,14 @@ function addNote( type, info) {
 
 
 
-function getNotes() {
-    if (storageService.loadFromStorage(KEY_NOTES)) {
-        notes = storageService.loadFromStorage(KEY_NOTES)
-    } else {
-        storageService.saveToStorage(KEY_NOTES, notes)
-    }
-    return Promise.resolve([...notes])
-}
+// function getNotes() {
+//     if (storageService.loadFromStorage(KEY_NOTES)) {
+//         notes = storageService.loadFromStorage(KEY_NOTES)
+//     } else {
+//         storageService.saveToStorage(KEY_NOTES, notes)
+//     }
+//     return Promise.resolve([...notes])
+// }
 
 function removeNote(noteId) {
     notes = notes.filter(note => note.id !== noteId);
@@ -207,6 +247,7 @@ function setPinNote(note) {
         })
     }
     storageService.saveToStorage(KEY_NOTES, notes);
+    return Promise.resolve(notes)
 }
 
 function getNoteById(noteId) {
