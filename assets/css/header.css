@@ -7,11 +7,12 @@
     background-color: white;
 }
 
-.logo{
+.logo {
     font-size: 2rem;
     color: burlywood;
 }
-.fas {
+
+.fas, .fab {
     text-align: center;
     font-size: 50px;
     width: 50px;
@@ -22,8 +23,8 @@
     cursor: pointer;
 }
 
-.fas:hover{
-    font-size: 60px; 
+.fas:hover {
+    font-size: 60px;
 }
 
 .fas.fa-home {
@@ -45,4 +46,3 @@
 .fas.fa-arrow-left {
     color: #4d6d9a
 }
-

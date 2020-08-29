@@ -9,7 +9,7 @@ function _AppHeader(props) {
             <div className="logo">AppSus</div>
             <div onClick={goBack}><i className="fas fa-arrow-left"></i></div>
             <NavLink  className='home-nav' to="/"><i className="fas fa-home"></i></NavLink>
-            <NavLink><i className="fas fa-book-open"></i></NavLink>
+            <NavLink  className='book-nav' to="/book"><i className="fas fa-book-open"></i></NavLink>
             <NavLink to="/email"><i className="fas fa-envelope-open-text"></i></NavLink>
             <NavLink to="/keep"><i className="fas fa-lightbulb"></i></NavLink>
             

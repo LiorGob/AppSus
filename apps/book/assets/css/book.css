@@ -1,0 +1,95 @@
+@import './Header.css';
+@import './Helpers.css';
+/* General */
+
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: Eurofurence;
+    src: url(../font/Eurofurence/eurof55.ttf)
+}
+
+@font-face {
+    font-family: Lato;
+    src: url(../font/Lato/Lato-Regular.ttf);
+}
+
+
+body {
+    /* background-color: #bddae7; */
+}
+
+a, li {
+    text-decoration: none;
+    list-style-type: none;
+    /* color: #494949; */
+}
+
+button {
+    cursor: pointer;
+    background-color: #fff;
+}
+
+img {
+    object-fit: cover;
+}
+
+input{
+    /* height: 30px;
+    width: 200px;
+    border-radius: 5px;
+    outline: none; */
+    /* margin-left: 5px;
+    margin-bottom: 10px; */
+
+}
+/* Price Book: */
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
+
+/* book-list: */
+
+.book-list {
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-flow: dense;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.book-preview {
+    /* background-color: #f1dfdfd8; */
+}
+
+/* about */
+.about{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.about img{
+    object-fit: cover;
+}
+
+
+.home{
+   background-image: url(../img/book-gif.gif); 
+   height: 100vh;
+   background-size: cover;
+   /* display: flex; */
+   /* object-fit: cover; */
+}
+
+.img-gif{
+  background-repeat: no-repeat;
+}

@@ -1,13 +1,17 @@
 import { storageService } from '../../../services/storage-service.js';
 import { eventBus } from '../../../services/event-bus-service.js'
 
+const KEY_NOTES = 'notes'
+
 export const keepService = {
     query,
     addNote,
     getNotes,
     getNoteById,
     removeNote,
-    setPinNote
+    setPinNote,
+    // save,
+    // getEmpty
 }
 
 
@@ -38,6 +42,7 @@ var notes = [
     {
         id: makeId(),
         type: 'NoteImg',
+        isPinned: false,
         info: {
             url: 'apps/keep/assets/img/view-img.jpg',
             title: 'beatiful-view'
@@ -49,6 +54,7 @@ var notes = [
     {
         id: makeId(),
         type: 'NoteImg',
+        isPinned: false,
         info: {
             url: 'apps/keep/assets/img/kiss-img.gif',
             title: 'kiss'
@@ -60,6 +66,7 @@ var notes = [
     {
         id: makeId(),
         type: 'NoteTodos',
+        isPinned: false,
         info: {
             label: 'How was it:',
             todos: [
@@ -74,18 +81,23 @@ var notes = [
 
 ]
 
+// function getEmpty() {
+//     return {id: makeId(),  type:'', isPinned: false, info:'',style: { backgroundColor: getRandomColor() } };
+// }
 
 function query() {
+    notes = storageService.loadFromStorage(KEY_NOTES) || notes
+    storageService.saveToStorage(KEY_NOTES, notes)
     return Promise.resolve(notes)
 }
 
 
-function createTxtNote(type, txt) {
+function createTxtNote(type, info) {
     return {
         id: makeId(),
         type: type,
         isPinned: false,
-        info: { txt: txt },
+        info: { txt: info },
         style: { backgroundColor: getRandomColor() }
     }
 }
@@ -95,32 +107,95 @@ function createImgNote(type, info) {
         id: makeId(),
         type: type,
         isPinned: false,
-        info: { url: info, title: txt },
+        info: { url: info, title: 'new picture' },
+        style: { backgroundColor: getRandomColor() }
+    }
+}
+
+function createTodoNote(type, info) {
+    return {
+        id: makeId(),
+        type: type,
+        isPinned: false,
+        info: { label: 'open linkedin', todos: [{ txt: info, doneAt: new Date().toLocaleString() }, { txt: info, doneAt: new Date().toLocaleString() }] },
+        style: { backgroundColor: getRandomColor() }
+    }
+
+}
+
+function createVidoNote(type, info) {
+    return {
+        id: makeId(),
+        type: type,
+        isPinned: false,
+        info: { url: info, title: 'video to keep' },
         style: { backgroundColor: getRandomColor() }
     }
 }
 
 
+
 // switch case with note depand on the info and type
-function addNote(type, info) {
-    let newNote = createTxtNote(type, info);
+function addingNote(type, info) {
+    let note = {}
+    switch (type) {
+        case 'NoteTxt':
+            return createTxtNote(type, info);
+        case 'NoteImg':
+            return createImgNote(type, info);
+        case 'NoteTodos':
+            return createTodoNote(type, info);
+        case 'NoteVideo':
+            return createVidoNote(type, info);
+        default:
+            break;
+    }
+    return note
+}
+
+
+function addNote( type, info) {
+   let newNote = addingNote(type, info);
     notes = [newNote, ...notes];
-    storageService.saveToStorage('notes', notes)
+    storageService.saveToStorage(KEY_NOTES, notes)
     return Promise.resolve(notes)
 }
 
 
+
+
+// function save(noteToSave) {
+//     noteToSave.id ? _update(noteToSave) : addNote(noteToSave)
+// }
+
+// function _update(noteToSave) {
+//     notes = notes.map(note => note.id === noteToSave.id ? noteToSave : note)
+//     return noteToSave
+// }
+
+
+// function addNote(newNote) {
+//     newNote = addingNote(type, info);
+//     notes = [newNote, ...notes];
+//     storageService.saveToStorage(KEY_NOTES, notes)
+//     return Promise.resolve(notes)
+// }
+
+
+
 function getNotes() {
-    if (storageService.loadFromStorage('notes')) {
-        notes = storageService.loadFromStorage('notes')
+    if (storageService.loadFromStorage(KEY_NOTES)) {
+        notes = storageService.loadFromStorage(KEY_NOTES)
     } else {
-        storageService.saveToStorage('notes', notes)
+        storageService.saveToStorage(KEY_NOTES, notes)
     }
     return Promise.resolve([...notes])
 }
 
 function removeNote(noteId) {
     notes = notes.filter(note => note.id !== noteId);
+    storageService.saveToStorage(KEY_NOTES, notes)
+    return Promise.resolve(notes)
 }
 
 
@@ -131,7 +206,7 @@ function setPinNote(note) {
             return (x === y) ? 0 : x ? -1 : 1
         })
     }
-    storageService.saveToStorage('notes', notes);
+    storageService.saveToStorage(KEY_NOTES, notes);
 }
 
 function getNoteById(noteId) {
@@ -158,8 +233,3 @@ function getRandomColor() {
     return color;
 }
 
-
-
-// toggleShowTxt =()=>{
-//     this.setState({isLongTxtShown: !this.state.isLongTxtShown})
-// }
