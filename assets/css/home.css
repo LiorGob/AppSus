@@ -1,12 +1,25 @@
-.home-page{
-  text-align: center;
-    background-image: url(../img/background.JPG);
-   /* background-size: cover; */
-   width:500px;
-   height: 500px;
+.home-page {
+  display: flex;
+  justify-content: center;
+  padding-top: 3.75rem
+  
+}
+
+.home-page img {
+  object-fit: cover;
+}
+
+
+@media (max-width: 550px) {
+  .home-page {
     display: flex;
+    justify-content: center;
+    padding-top: 2.7rem
     
-    background-repeat: no-repeat;
-   
-    
+  }
+  .home-page img{
+    width: 100%;
+  }
+
+
 }

@@ -87,7 +87,7 @@ export class KeepApp extends React.Component {
     getNotesForDisplay() {
         const notes = this.state.notes.filter(note =>
             (note.info.txt || note.info.title || note.info.url || note.info.label).includes(this.state.filterBy.toLowerCase()))
-        console.log(notes);
+        // console.log(notes);
         //    if(!note.info.txt || !note.info.title || !note.info.label) return ''
         return notes;
 
