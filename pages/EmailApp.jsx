@@ -1,19 +1,24 @@
-const { Link } = ReactRouterDOM
+const Router = ReactRouterDOM.HashRouter
+const { NavLink, Route, Switch } = ReactRouterDOM
 import { emailService } from '../apps/mail/services/email-service.js'
 import {ComposeModal} from '../apps/mail/cmps/ComposeModal.jsx'
 import { EmailList } from '../apps/mail/cmps/EmailList.jsx'
 import { EmailDetails } from '../apps/mail/pages/EmailDetails.jsx'
 import { EmailFilter } from '../apps/mail/cmps/EmailFilter.jsx'
 import {EmailSideBar} from '../apps/mail/cmps/EmailSideBar.jsx'
-
+import {Inbox} from '../apps/mail/pages/Inbox.jsx'
+import {Sent} from '../apps/mail/pages/Sent.jsx'
+import {Trash} from '../apps/mail/pages/Trash.jsx'
+import {EmailPreview} from '../apps/mail/cmps/EmailPreview'
 
 export class EmailApp extends React.Component {
 
     state = {
+        emailToAdd:'',
         filterBy: '',
         emails: [],
         selectedEmail: null,
-        isShown: true
+        isShown: false
 
     }
 
@@ -21,13 +26,13 @@ export class EmailApp extends React.Component {
         this.loadEmails();
     }
 
-    loadEmails() {
+    loadEmails=()=>{
         emailService.query()
             .then(emails => {
                 this.setState({ emails })
             })
     }
-    removeEmail = (emailId) => {
+    removeEmail=(emailId)=>{
         emailService.remove(emailId)
        this.loadEmails();
 
@@ -43,12 +48,13 @@ export class EmailApp extends React.Component {
         return emails;
     }
 
-    onToggleMenu = () => {
-        document.querySelector('.side-bar').classList.toggle('open');
-        document.querySelector('.main-nav2').classList.toggle('menu-open');
-    }
+    setRead = (mail, isRead) => {
+        emailService.updateRead(mail, isRead)
+            .then(() => {
+                this.loadEmails()
+            })
 
- 
+    }
 
 
 
@@ -59,20 +65,42 @@ export class EmailApp extends React.Component {
         // const { emails} = this.state
         return (
             <div className="wrap">
-            <EmailSideBar onSetFilter={this.onSetFilter}></EmailSideBar>
+            <EmailSideBar loadEmails={this.loadEmails} openCompose={this.openCompose} onSetFilter={this.onSetFilter}></EmailSideBar>
+              <Router> 
+            {/* <div className="email-route">
+                <ul>
+                    <li className ="inbox"><NavLink to="email/inbox">Inbox</NavLink></li>
+                    <li className ="Sent"><NavLink to="email/inbox">Sent</NavLink></li>
+                    <li className ="Trash"><NavLink to="email/inbox">Trash</NavLink></li>
+                </ul>
+            </div> */}
+            <div className="email-nav-list">
+                <Switch>
+                    {emails.length>0 && <Route path ="/email/inbox"
+                    render ={(props)=>(
+                        <Inbox {...props} emails = {emails}/>
+                    )}
+                />}
+                <Route conponent={Sent} path="/email/sent"/>
+                <Route component ={Trash} path ="/email/trash"/>
+                </Switch>
+            </div>
+            </Router>
+
             <nav className={'main-nav2'}>
                 <button className={'nav-hamburger second'} onClick={this.onToggleMenu}>
                 </button> </nav>
             <section className="email-app">
                 <h1 className="my-email">My Emails</h1>
                 <EmailFilter location={ this.props.location } onFilter={ this.setFilter } />
-                <EmailList emails={emails} removeEmail={this.removeEmail} />
+                <EmailList emails={emails} setRead={this.setRead} removeEmail={this.removeEmail} />
                 {selectedEmail && <EmailDetails email={selectedEmail} />}
-               
-
+                {/* {this.state.isShown && <ComposeModal onCloseCompose={this.closeCompose} onSubmitCompose={this.submitCompose} />} */}
             </section>
             </div>
+        
         )
+
     }
 
 
