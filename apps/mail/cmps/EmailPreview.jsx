@@ -12,7 +12,8 @@ export function EmailPreview({ email, removeEmail, setRead, markAStar}) {
                     ev.stopPropagation()
                     markAStar()
                 }}>
-                    {email.isStarred && <i className="email fav-star-starred fas fa-star"></i>}
+                    
+                    {email.isStarred && <i className="star far fa-star"></i>}
                     {!email.isStarred && <i className="email fav-star far fa-star"></i>}
                 </button>
                 <button onClick={(ev) => {ev.preventDefault()
