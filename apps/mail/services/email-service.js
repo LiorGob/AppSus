@@ -10,7 +10,8 @@ export const emailService = {
     unreadMailCount,
     save,
     updateRead,
-    getIdxById
+    getIdxById,
+    markAStar
    
 }
 
@@ -33,6 +34,7 @@ var emails = [
         subject: 'zoom meeting invitation',
         body: 'lior gobari has joined your Personal Meeting Room',
         isRead: false,
+        isStarred: false,
         sentAt: convertToDate(1551133930595)
     },
 
@@ -136,15 +138,16 @@ function save(emailToSave){
   emails.unshift(emailToSave)
    
 }
-
-// function emailRead(emailRead) {
-//     emails.forEach((email) => {
-//         if (email.id === emailRead.id) {
-//             if (email.isRead) return
-//             email.isRead = !email.isRead
-//         }
-//     })
-// }
+function markAStar(email){
+    return getIdxById(email.id)
+    .then ((emailIdx)=> query()
+    .then(emails => {
+        let currEmail = emails [emailIdx]
+        currEmail.isStarred = !currEmail.isStarred
+        // saveToStorage('emails', mails)
+        return Promise.resolve()
+    }))
+}
 
 function updateRead(mail, isRead = true) {
     
@@ -152,9 +155,8 @@ function updateRead(mail, isRead = true) {
         .then((mailIdx) => query()
             .then(mails => {
                 var currMail = mails[mailIdx]
-                console.log("updateReaden -> isReadenClick", isRead)
                 currMail.isRead = isRead;
-               saveToStorage('emails', mails)
+            //    saveToStorage('emails', mails)
                 return Promise.resolve()
             }))
 

@@ -1,7 +1,7 @@
-@font-face {
+/* @font-face {
     font-family: Molengo;
     src: url(/AppSus/assets/font/Molengo-Regular.ttf)
-}
+} */
 
 body {
     font-family: Molengo;
@@ -209,6 +209,12 @@ textarea .email-input-txt {
     transition: all ease .4s;
     box-shadow: rgb(196, 194, 194) .1px .4px .4px .4px;
 } 
+
+.email.fas.fa-plus{
+    width: 20px;
+    height: 20px;
+   
+}
 
 
 

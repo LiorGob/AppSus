@@ -23,7 +23,7 @@ this.loadEmail()
 
   render(){
       const email = this.state.email
-      console.log(email);
+     
       if(!email) return <div>Loading...</div>
     
       return(
