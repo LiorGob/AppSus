@@ -17,12 +17,16 @@ li {
     list-style-type: none;
 }
 
+input{
+    outline: none;
+}
+
 button {
     outline: none;
 }
 
 .my-email {
-    color: #FCE181;
+    color: #ffcd1b;
     /* font-weight: 700; */
     font-size: 40px;
 }
@@ -56,6 +60,7 @@ button {
     flex-direction: column;
     /* overflow-y: scroll; */
     padding: 0px;
+    background: rgba(161, 161, 161, 0.1);
 }
 
 .msg {
@@ -224,6 +229,10 @@ textarea .email-input-txt {
     border: 0.5px solid white;
     outline: white;
     /* text-align: center; */
+}
+
+textarea{
+    outline: none;
 }
 
 .trash-btn-email .far.fa-trash-alt {
