@@ -10,7 +10,7 @@ export function NoteList({ notes, onRemoveNote, onPinnedNote }) {
                     <div className="edit">
                         <button onClick={() => onRemoveNote(note.id)}><i className="far fa-trash-alt"></i></button>
                         <button><i className="fas fa-palette"></i></button>
-                        <button> <i className="fas fa-edit"></i></button>
+                        <button > <i className="fas fa-edit"></i></button>
                     </div>
                 </li>)}
         </ul>
@@ -19,3 +19,5 @@ export function NoteList({ notes, onRemoveNote, onPinnedNote }) {
 
 }
 
+
+// onClick={() => onEditNote(note)}

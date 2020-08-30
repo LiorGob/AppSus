@@ -9,7 +9,8 @@ export const keepService = {
     // getNotes,
     getNoteById,
     removeNote,
-    setPinNote,
+    setPinNote
+    // editNote,
     // save,
     // getEmpty
 }
@@ -20,6 +21,7 @@ var notes = [
         id: makeId(),
         type: 'NoteTxt',
         isPinned: false,
+        isEdit: false,
         info: {
             txt: 'sprint 3 is on'
         },
@@ -117,7 +119,7 @@ var notes = [
             backgroundColor: '#deb887'
         }
     }
-  
+
 
 ]
 
@@ -137,6 +139,7 @@ function createTxtNote(type, info) {
         id: makeId(),
         type: type,
         isPinned: false,
+        isEdit: false,
         info: { txt: info },
         style: { backgroundColor: getRandomColor() }
     }
@@ -194,8 +197,8 @@ function addingNote(type, info) {
 }
 
 
-function addNote( type, info) {
-   let newNote = addingNote(type, info);
+function addNote(type, info) {
+    let newNote = addingNote(type, info);
     notes = [newNote, ...notes];
     storageService.saveToStorage(KEY_NOTES, notes)
     return Promise.resolve(notes)
@@ -206,17 +209,17 @@ function addNote( type, info) {
 // function save(noteToSave){
 //     let foundedNote =  notes.find((note)=>note.id ===noteToSave.id)
 //     if(!foundedNote)
-//     _update(foundedNote)
+//     update(foundedNote)
 //      else
 //          addNote(noteToSave)
 //   }
-  
+
 //   function update(noteToSave){
 //       let foundedNote = notes.find((note)=>note.id ===noteToSave.id)
 //       if(foundedNote)
 //        foundedNote = noteToSave
 //   }
-  
+
 
 
 // function addNote(newNote) {
@@ -254,6 +257,12 @@ function setPinNote(note) {
     storageService.saveToStorage(KEY_NOTES, notes);
     return Promise.resolve(notes)
 }
+
+// function editNote(note) {
+//     note.isEdit = !note.isEdit;
+//     storageService.saveToStorage(KEY_NOTES, notes);
+//     return Promise.resolve(notes)
+// }
 
 function getNoteById(noteId) {
     const note = notes.find(note => note.id === noteId);

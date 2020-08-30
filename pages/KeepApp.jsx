@@ -40,48 +40,54 @@ export class KeepApp extends React.Component {
             })
 
     }
-   
+
 
     onRemoveNote = (noteId) => {
-            keepService.removeNote(noteId)
-            this.loadNotes();
-        }
+        keepService.removeNote(noteId)
+        this.loadNotes();
+    }
 
     onPinnedNote = (note) => {
-            keepService.setPinNote(note)
-            this.loadNotes()
-        }
+        keepService.setPinNote(note)
+        this.loadNotes()
+    }
+
+
+    // onEditNote = (note) => {
+    //     keepService.editNote(note)
+    //     this.loadNotes()
+    // }
 
     changeInput = (ev) => {
-            // ev.persist()
-            let name = ev.target.name;
-            let value = ev.target.value;
-            this.setState({ type: name, info: value })
-        }
+        // ev.persist()
+        let name = ev.target.name;
+        let value = ev.target.value;
+        this.setState({ type: name, info: value })
+    }
     onInputChange = (type) => {
-            this.setState({ inputType: type, info: '' })
-        }
+        this.setState({ inputType: type, info: '' })
+    }
 
     onkeyup = (ev) => {
-            if (ev.keCode === 13) this.onAddNote();
-        }
+        if (ev.keCode === 13) this.onAddNote();
+    }
 
 
     dynamicNote = (inputType) => {
-            switch (inputType) {
-                case 'txt':
-                    return <input className="add-note" onKeyUp={this.onkeyup} type="text" value={this.state.info} onChange={this.changeInput} placeholder="What's on your mind.." name="NoteTxt" />
-                case 'img':
-                    return <input className="add-note" onKeyUp={this.onkeyup} type="text" value={this.state.info} onChange={this.changeInput} placeholder="Add image Url.." name="NoteImg" />
-                case 'todo':
-                    return <input className="add-note" onKeyUp={this.onkeyup} type="text" value={this.state.info} onChange={this.changeInput} placeholder="Add todos.." name="NoteTodos" />
-                case 'video':
-                    return <input className="add-note" onKeyUp={this.onkeyup} type="text" value={this.state.info} onChange={this.changeInput} placeholder="Add video Url.." name="NoteVideo" />
-                default:
-                    return <h1>Something went wrong...</h1>
-            }
-
+        switch (inputType) {
+            case 'txt':
+                return <input className="add-note" onKeyUp={this.onkeyup} type="text" value={this.state.info} onChange={this.changeInput} placeholder="What's on your mind.." name="NoteTxt" />
+            case 'img':
+                return <input className="add-note" onKeyUp={this.onkeyup} type="text" value={this.state.info} onChange={this.changeInput} placeholder="Add image Url.." name="NoteImg" />
+            case 'todo':
+                return <input className="add-note" onKeyUp={this.onkeyup} type="text" value={this.state.info} onChange={this.changeInput} placeholder="Add todos.." name="NoteTodos" />
+            case 'video':
+                return <input className="add-note" onKeyUp={this.onkeyup} type="text" value={this.state.info} onChange={this.changeInput} placeholder="Add video Url.." name="NoteVideo" />
+            default:
+                return <h1>Something went wrong...</h1>
         }
+
+    }
 
 
     getNotesForDisplay() {
@@ -98,19 +104,19 @@ export class KeepApp extends React.Component {
         const notes = this.getNotesForDisplay();
         // const notes = this.state.notes
 
-        return(
-            <section className = "keep-app-masonry" >
+        return (
+            <section className="keep-app-masonry" >
                 <h1>KeepApp</h1>
                 <FilterNote location={this.props.location} onFilter={this.setFilter} />
                 <div className="add">{this.dynamicNote(this.state.inputType)}
-                <div className="adding-note">
-                    <button className="adding-note-btn" onClick={() => this.onInputChange('txt')} title="text"><i className="fas fa-font"></i></button>
-                    <button className="adding-note-btn" onClick={() => this.onInputChange('img')} title="image"><i className="fas fa-mountain"></i></button>
-                    <button className="adding-note-btn" onClick={() => this.onInputChange('todo')} title="todo"><i className="fas fa-list"></i></button>
-                    <button className="adding-note-btn" onClick={() => this.onInputChange('video')} title="video"><i className="fab fa-youtube"></i></button>
+                    <div className="adding-note">
+                        <button className="adding-note-btn" onClick={() => this.onInputChange('txt')} title="text"><i className="fas fa-font"></i></button>
+                        <button className="adding-note-btn" onClick={() => this.onInputChange('img')} title="image"><i className="fas fa-mountain"></i></button>
+                        <button className="adding-note-btn" onClick={() => this.onInputChange('todo')} title="todo"><i className="fas fa-list"></i></button>
+                        <button className="adding-note-btn" onClick={() => this.onInputChange('video')} title="video"><i className="fab fa-youtube"></i></button>
 
-                    <div onClick={this.onAddNote}><i className="keep fas fa-plus"></i></div>
-                </div>
+                        <div onClick={this.onAddNote}><i className="keep fas fa-plus"></i></div>
+                    </div>
                 </div>
                 <NoteList notes={notes.filter(note => note.isPinned)} onRemoveNote={this.onRemoveNote} onPinnedNote={this.onPinnedNote} />
                 <NoteList notes={notes.filter(note => !note.isPinned)} onRemoveNote={this.onRemoveNote} onPinnedNote={this.onPinnedNote} />
