@@ -1,10 +1,8 @@
 const { Link } = ReactRouterDOM
 import { keepService } from '../apps/keep/services/keep-service.js';
 import { NoteList } from '../apps/keep/cmps/NoteList.jsx';
-import { eventBus } from '../services/event-bus-service.js'
-// import { AddNote } from '../apps/keep/cmps/AddNote';
 import { FilterNote } from '../apps/keep/cmps/FilterNote.jsx'
-import { storageService } from '../services/storage-service.js';
+
 
 export class KeepApp extends React.Component {
 
@@ -14,7 +12,6 @@ export class KeepApp extends React.Component {
         type: '',
         info: '',
         inputType: 'txt',
-        // note: keepService.getEmpty()
     }
     componentDidMount() {
         this.loadNotes();
@@ -41,25 +38,22 @@ export class KeepApp extends React.Component {
 
     }
 
+    onUpdateNote = (note) => {
+        keepService.updateNote(note)
+        this.loadNotes();
+    }
 
     onRemoveNote = (noteId) => {
         keepService.removeNote(noteId)
         this.loadNotes();
     }
 
-    onPinnedNote = (note) => {
-        keepService.setPinNote(note)
+    onPinnedNote = (noteId) => {
+        keepService.setPinNote(noteId)
         this.loadNotes()
     }
 
-
-    // onEditNote = (note) => {
-    //     keepService.editNote(note)
-    //     this.loadNotes()
-    // }
-
     changeInput = (ev) => {
-        // ev.persist()
         let name = ev.target.name;
         let value = ev.target.value;
         this.setState({ type: name, info: value })
@@ -118,8 +112,8 @@ export class KeepApp extends React.Component {
                         <div onClick={this.onAddNote}><i className="keep fas fa-plus"></i></div>
                     </div>
                 </div>
-                <NoteList notes={notes.filter(note => note.isPinned)} onRemoveNote={this.onRemoveNote} onPinnedNote={this.onPinnedNote} />
-                <NoteList notes={notes.filter(note => !note.isPinned)} onRemoveNote={this.onRemoveNote} onPinnedNote={this.onPinnedNote} />
+                <NoteList notes={notes.filter(note => note.isPinned)} onRemoveNote={this.onRemoveNote} onPinnedNote={this.onPinnedNote} onUpdateNote={this.onUpdateNote} />
+                <NoteList notes={notes.filter(note => !note.isPinned)} onRemoveNote={this.onRemoveNote} onPinnedNote={this.onPinnedNote}  onUpdateNote={this.onUpdateNote}/>
             </section>
         )
     }

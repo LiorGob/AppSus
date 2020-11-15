@@ -9,8 +9,8 @@ export const keepService = {
     // getNotes,
     getNoteById,
     removeNote,
-    setPinNote
-    // editNote,
+    setPinNote,
+    updateNote
     // save,
     // getEmpty
 }
@@ -21,7 +21,6 @@ var notes = [
         id: makeId(),
         type: 'NoteTxt',
         isPinned: false,
-        isEdit: false,
         info: {
             txt: 'sprint 3 is on'
         },
@@ -139,7 +138,6 @@ function createTxtNote(type, info) {
         id: makeId(),
         type: type,
         isPinned: false,
-        isEdit: false,
         info: { txt: info },
         style: { backgroundColor: getRandomColor() }
     }
@@ -209,7 +207,7 @@ function addNote(type, info) {
 // function save(noteToSave){
 //     let foundedNote =  notes.find((note)=>note.id ===noteToSave.id)
 //     if(!foundedNote)
-//     update(foundedNote)
+//     _update(foundedNote)
 //      else
 //          addNote(noteToSave)
 //   }
@@ -247,22 +245,28 @@ function removeNote(noteId) {
 }
 
 
-function setPinNote(note) {
-    note.isPinned = !note.isPinned;
-    if (note.isPinned === true) {
-        notes.sort(function (x, y) {
-            return (x === y) ? 0 : x ? -1 : 1
-        })
-    }
+// function setPinNote(note) {
+//     note.isPinned = !note.isPinned;
+//     if (note.isPinned === true) {
+//         notes.sort(function (x, y) {
+//             return (x === y) ? 0 : x ? -1 : 1
+//         })
+//     }
+//     storageService.saveToStorage(KEY_NOTES, notes);
+//     return Promise.resolve(notes)
+// }
+
+
+function setPinNote(noteId) {
+    const pinNote = notes.findIndex(note => note.id === noteId)
+    const selectedNote = notes.find(note => note.id === noteId)
+    notes.splice(pinNote, 1)
+    notes.unshift(selectedNote)
+    selectedNote.isPinned = !selectedNote.isPinned
     storageService.saveToStorage(KEY_NOTES, notes);
     return Promise.resolve(notes)
 }
 
-// function editNote(note) {
-//     note.isEdit = !note.isEdit;
-//     storageService.saveToStorage(KEY_NOTES, notes);
-//     return Promise.resolve(notes)
-// }
 
 function getNoteById(noteId) {
     const note = notes.find(note => note.id === noteId);
@@ -288,3 +292,9 @@ function getRandomColor() {
     return color;
 }
 
+function updateNote(newNote){
+    const noteIdx= notes.findIndex(note=> note.id===newNote.id)
+    notes.splice(noteIdx, 1, newNote)
+    storageService.saveToStorage(KEY_NOTES, notes);
+    return Promise.resolve(notes)
+}
