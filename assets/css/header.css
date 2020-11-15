@@ -9,8 +9,7 @@
 
 .logo {
     font-size: 3rem;
-    /* font-weight: 700; */
-    color: #ffcd1b;
+    color: #fce181;
     font-family: Molengo;
 }
 
@@ -19,7 +18,7 @@
     margin: 5px 0;
     cursor: pointer;
 }
-.goback.fas.fa-arrow-left{
+.fas.fa-arrow-left,.fas.fa-home,.fas.fa-book-open,.fas.fa-lightbulb,.fas.fa-envelope-open-text{
     text-align: center;
     font-size: 50px;
     width: 50px;
@@ -27,74 +26,12 @@
     border-radius: 10px;
    shape-margin: 0em;
     margin: 5px 0;
-    cursor: pointer;
+    cursor: pointer;  
 }
-.fas.fa-home{
-    text-align: center;
-   font-size: 50px;
-    width: 50px;
-    height: 50px;
-   border-radius: 10px;
-    shape-margin: 0em;
-    margin: 5px 0;
-    cursor: pointer;
-}
-.fas.fa-home:hover{
-    font-size: 60px;
-}
-.fas.fa-book-open{
-    text-align: center;
-  font-size: 50px;
-    width: 50px;
-    height: 50px; 
-    border-radius: 10px; 
-    shape-margin: 0em;
-    margin: 5px 0;
-    cursor: pointer;
-}
-.fas.fa-book-open:hover{
-    font-size: 60px;
-}
-.fas.fa-envelope-open-text{
-    text-align: center;
-   font-size: 50px;
-    width: 50px;
-    height: 50px; 
-    border-radius: 10px; 
-   shape-margin: 0em;
-    margin: 5px 0;
-    cursor: pointer;
-}
-.fas.fa-envelope-open-text:hover{
-    font-size: 60px;
-}
-.fas.fa-lightbulb{
-    text-align: center;
-    font-size: 50px;
-    width: 50px;
-    height: 50px; 
-     border-radius: 10px;
-     shape-margin: 0em;
-     margin: 5px 0;
-    cursor: pointer; 
-}
-.fas.fa-lightbulb:hover{
+header .fas:hover{
     font-size: 60px;
 }
 
-.goback.fas.fa-arrow-left{
-    text-align: center;
-    font-size: 50px;
-    width: 50px;
-    height: 50px; 
-     border-radius: 10px;
-     shape-margin: 0em;
-     margin: 5px 0;
-    cursor: pointer; 
-}
-.goback.fas.fa-arrow-left:hover{
-    font-size: 60px;
-}
 
 .fas.fa-home {
     color: #a6607c
@@ -119,20 +56,8 @@
 /* media */
 
 @media (max-width: 550px) {
-    /* .main-header>*:not(:last-child) {
-        display: none;
-    } */
-    .fas, .fab {
-        text-align: center;
-        font-size: 30px;
-        width: 30px;
-        height: 30px;
-        border-radius: 7px;
-        shape-margin: 0em;
-        margin: 5px 0;
-        cursor: pointer;
-    }
-    .goback.fas.fa-arrow-left,.fas.fa-home,.fas.fa-book-open,.fas.fa-lightbulb,.fas.fa-envelope-open-text{
+ 
+    .fas.fa-arrow-left,.fas.fa-home,.fas.fa-book-open,.fas.fa-lightbulb,.fas.fa-envelope-open-text{
         text-align: center;
         font-size: 30px;
         width: 30px;
@@ -142,15 +67,15 @@
         margin: 5px 0;
         cursor: pointer; 
     }
-
-    .goback.fas.fa-arrow-left,.fas.fa-home,.fas.fa-book-open,.fas.fa-lightbulb,.fas.fa-envelope-open-text :hover {
+    header .fas:hover{
         font-size: 33px;
     }
-    
+  
     .logo {
-        font-size: 1.7rem;
-        color:#ffcd1b;
+        font-size: 1.5rem;
+        color: #deb887;
     }
+ 
     
    
 }

@@ -60,7 +60,6 @@ button {
     display: flex;
     flex-direction: column;
     padding: 0px;
-    background: rgba(161, 161, 161, 0.1);
 }
 
 .msg {
@@ -526,16 +525,20 @@ textarea {
     .form-container {
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
-        margin-right: 100px;
+        margin-right: 7px;
         bottom: 0;
         right: 0;
         position: fixed;
         z-index: 99999;
-        margin-top: 50px;
+        /* margin-top: 50px; */
         display: block;
         width: 300px;
-        height: 400px;
+        /* height: 400px; */
         background: white;
         box-shadow: 0px 1px 5px 0 rgba(60, 64, 67, 0.302), 0 1px 3px 1px rgba(60, 64, 67, 0.149);
+    }
+    .email-input-text {
+       width: 100px;
+       height: 100px;
     }
 }
