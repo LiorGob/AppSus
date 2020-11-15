@@ -7,6 +7,7 @@ import {EmailApp} from './pages/EmailApp.jsx'
 import {BookApp} from './apps/book/pages/BookApp.jsx'
 import {EmailDetails} from './apps/mail/pages/EmailDetails.jsx'
 import {BookDetails} from './apps/book/pages/BookDetails.jsx'
+import {Notification} from './apps/mail/cmps/Notification.jsx'
 // import {OpenNavBar} from './cmps/OpenNavBar.jsx'
 export class App extends React.Component {
 
@@ -28,6 +29,7 @@ export class App extends React.Component {
                         </Switch>
 
                     </main>
+                    <Notification/>
                 </div>
             </Router>
 

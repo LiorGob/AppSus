@@ -1,53 +1,78 @@
-const Router = ReactRouterDOM.HashRouter
-const { NavLink, Route, Switch } = ReactRouterDOM
+// const Router = ReactRouterDOM.HashRouter
+// const { NavLink, Route, Switch } = ReactRouterDOM
+import { EmailSideBar } from '../apps/mail/cmps/EmailSideBar.jsx'
 import { emailService } from '../apps/mail/services/email-service.js'
-import {ComposeModal} from '../apps/mail/cmps/ComposeModal.jsx'
+import eventBus from '../services/event-bus-service.js'
 import { EmailList } from '../apps/mail/cmps/EmailList.jsx'
 import { EmailDetails } from '../apps/mail/pages/EmailDetails.jsx'
 import { EmailFilter } from '../apps/mail/cmps/EmailFilter.jsx'
-import {EmailSideBar} from '../apps/mail/cmps/EmailSideBar.jsx'
-import {Inbox} from '../apps/mail/pages/Inbox.jsx'
-import {Sent} from '../apps/mail/pages/Sent.jsx'
-import {Trash} from '../apps/mail/pages/Trash.jsx'
-import {EmailPreview} from '../apps/mail/cmps/EmailPreview'
+import { ComposeModal } from '../apps/mail/cmps/ComposeModal.jsx'
+
 
 export class EmailApp extends React.Component {
 
     state = {
-        emailToAdd:'',
+        emailToAdd: '',
         filterBy: '',
+        filterRatio: '',
         emails: [],
         selectedEmail: null,
-        isShown: false,
-        emailType:''
+        isComposeShown: false,
+        emailsType: '',
+        unreadMailAmount: '',
+        keepToMail: null
 
     }
 
     componentDidMount() {
+        const mailSection = new URLSearchParams(window.location.href).get('section')
+        const keepToMail = new URLSearchParams(window.location.href).get('keep')
+        if (mailSection) {
+            this.setState({ emailsType: mailSection })
+        }
+        else {
+            this.setState({ emailsType: 'income' })
+        }
+        if(keepToMail){
+            this.setState({ keepToMail, isComposeShown: true })  
+        }
+        
         this.loadEmails();
     }
 
-    loadEmails=()=>{
+    loadEmails = () => {
         emailService.query()
-            .then(emails => {
+            .then((emails) => {
+                this.setUnreadAmount()
                 this.setState({ emails })
             })
     }
-    removeEmail=(emailId)=>{
-        emailService.remove(emailId)
-       this.loadEmails();
-
-    }
+  
 
     setFilter = (filterBy) => {
         this.props.history.push(`/email?filterBy=${filterBy}`)
         this.setState({ filterBy })
     }
 
-    getEmailsForDisplay() {
-        const emails = this.state.emails.filter(email => email.from.toLowerCase().includes(this.state.filterBy.toLowerCase()))
-        return emails;
+    // getEmailsForDisplay() {
+    //     const emails = this.state.emails.filter(email => email.from.toLowerCase().includes(this.state.filterBy.toLowerCase()))
+    //     return emails;
+    // }
+    getEmailsForDisplay(){
+        const currMails = this.state.emails
+        let emailsToShow = currMails.filter(email => email.type === this.state.emailsType)
+        if (this.state.emailsType === 'starred') emailsToShow = currMails.filter(email => email.isStarred)
+        if (!emailsToShow) return
+        let emails = emailsToShow.filter(email => email.from.toLowerCase().includes(this.state.filterBy.toLowerCase()))
+        if (this.state.filterRatio === 'read') {
+            emails = emailsToShow.filter(email => email.isRead)
+        }
+        else if (this.state.filterRatio === 'unread') {
+            emails = emailsToShow.filter(email => !email.isRead)
+        }
+        return emails; 
     }
+
 
     setRead = (mail, isRead) => {
         emailService.updateRead(mail, isRead)
@@ -57,62 +82,72 @@ export class EmailApp extends React.Component {
 
     }
 
-    markAStar =(email)=>{
-        emailService.markAStar(email)
-        .then(()=>{this.loadEmails})
 
+
+    updateMail = (emailId, paramToChange, isUnReadClick) => {
+        emailService.updateMail(emailId, paramToChange, isUnReadClick)
+            .then(() => {
+                if (paramToChange === 'removeMail' && this.state.emailsType === 'trash'){
+                    eventBus.emit('notify', {msg: 'mail have been removed'})
+                }
+                else if (paramToChange === 'removeMail' && this.state.emailsType !== 'trash'){
+                    eventBus.emit('notify', { msg: 'Moved to trash'})
+                }
+                this.loadEmails()
+            })
     }
 
-    openStarEmail=()=>{
-        emailService.query()
-        .then((emails)=>{
-            this.setState({emailType:'star'})
-        })
+    changeMailSection = (section) => {
+        this.props.history.push(`/email?&section=${section}`)
+        const mailSection = new URLSearchParams(window.location.href).get('section')
+        this.setState({ emailsType: mailSection })
+        
     }
 
+    setUnreadAmount = () => {
+        emailService.unreadMailCount()
+            .then(counter => {
+                this.setState({ unreadMailAmount: counter })
+            })
+    }
+
+    openCompose = () => {
+        // this.setState({ isComposeShown: true })
+        eventBus.emit('composeModal');
+        console.log('open');
+    }
+
+    submitCompose=(newEmail)=>{
+        emailService.sendEmail(newEmail)
+        .then(()=>{
+            eventBus.emit('notify', {msg: 'The mail have been sent', type: 'success'})
+        })  
+    }
 
 
     render() {
-        const {isShown} = this.state
-        const { selectedEmail } = this.state
         const emails = this.getEmailsForDisplay();
-        // const { emails} = this.state
+        if (!emails) return <h2> loading...</h2>
+        const { selectedEmail } = this.state
         return (
             <div className="wrap">
-            <EmailSideBar loadEmails={this.loadEmails} openCompose={this.openCompose} onSetFilter={this.onSetFilter} openStarEmail={this.openStarEmail}></EmailSideBar>
-              <Router> 
-            {/* <div className="email-route">
-                <ul>
-                    <li className ="inbox"><NavLink to="email/inbox">Inbox</NavLink></li>
-                    <li className ="Sent"><NavLink to="email/inbox">Sent</NavLink></li>
-                    <li className ="Trash"><NavLink to="email/inbox">Trash</NavLink></li>
-                </ul>
-            </div> */}
-            <div className="email-nav-list">
-                <Switch>
-                    {emails.length>0 && <Route path ="/email/inbox"
-                    render ={(props)=>(
-                        <Inbox {...props} emails = {emails}/>
-                    )}
-                />}
-                <Route conponent={Sent} path="/email/sent"/>
-                <Route component ={Trash} path ="/email/trash"/>
-                </Switch>
-            </div>
-            </Router>
+                <EmailSideBar onChangeSection={this.changeMailSection}
+                openCompose={this.openCompose} unreadMailAmount={this.state.unreadMailAmount}
+             ></EmailSideBar>
+                 <ComposeModal loadEmails={this.loadEmails} onSubmitCompose={this.submitCompose}
+               ></ComposeModal>
+                <nav className={'main-nav2'}>
+                    <button className={'nav-hamburger second'} onClick={this.onToggleMenu}>
+                    </button> </nav>
+                <section className="email-app">
+                    <h1 className="my-email">My Emails</h1>
+                    <EmailFilter location={this.props.location} onFilter={this.setFilter} />
+                    <EmailList onUpdateMail={this.updateMail} emails={emails} openCompose={this.openCompose}  />
+                    {selectedEmail && <EmailDetails email={selectedEmail}/>}
 
-            <nav className={'main-nav2'}>
-                <button className={'nav-hamburger second'} onClick={this.onToggleMenu}>
-                </button> </nav>
-            <section className="email-app">
-                <h1 className="my-email">My Emails</h1>
-                <EmailFilter location={ this.props.location } onFilter={ this.setFilter } />
-                <EmailList emails={emails} setRead={this.setRead} removeEmail={this.removeEmail} markAStar={this.markAStar}  />
-                {selectedEmail && <EmailDetails email={selectedEmail} />}
-              
-            </section>
+                </section>
             </div>
-        
+
         )
 
     }

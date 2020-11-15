@@ -20,6 +20,41 @@ li {
     list-style-type: none;
 }
 
+/* Helpers  */
+
+.flex {
+    display: flex;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.space-evenely {
+    justify-content: space-evenly;
+}
+
+.space-around {
+    justify-content: space-around;
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.flex-1 {
+    flex-grow: 1;
+}
+
 @font-face{
     font-family: Molengo;
     src: url(../font/Molengo-Regular.ttf);
